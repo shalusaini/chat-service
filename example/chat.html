@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Example</title>
+  <link rel="stylesheet" type="text/css" href="chat.css">
+</head>
+
+<body>
+  <div class="row">
+    <div id="logs"></div>
+    <div class="column">
+      <div id="inter">
+        <p class="msg-options">
+          <a onclick="withMetaMsg()">With Meta</a>
+          <a onclick="recentMsg()">Recent</a>
+          <a onclick="receiverMsg()">Receiver</a>
+        </p>
+        <textarea id="message-editor">{"content":"Hello there!"}</textarea>
+        <button onclick="apiSendMessage()">Send Message</button>
+      </div>
+      <div id="thread-container">
+        <div id="threads"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+    integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+    crossorigin="anonymous"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

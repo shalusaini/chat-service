@@ -1,0 +1,126 @@
+body,html {
+  margin:0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+#logs {
+  float: left;
+  width: 100%;
+  height: 40%;
+  padding: 1rem;
+  background-color: rgba(0,0,0,.1);
+  box-sizing: border-box;
+  color: #333;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#inter {
+  float: left;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 240px;
+}
+
+.msg-options {
+  padding: 0;
+  margin: 0;
+}
+
+.msg-options  a {
+  font-size: .85rem;
+  color: blue;
+  cursor: pointer;
+  border-left: 1px solid #ccc;
+  padding: 0 .25rem;
+}
+
+.msg-options  a:first-child{
+  border: none;
+}
+
+#message-editor {
+  float: left;
+  width: 100%;
+  height: 160px;
+  resize: none;
+  white-space: pre-line;
+}
+
+button {
+  padding: .5rem;
+  color: #ccc;
+  background-color: #444;
+  font-size: .8rem;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+#thread-container {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  height: calc(100vh - 250px);
+  position: relative;
+}
+
+#threads {
+  float: left;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;  
+  height: 100%;
+}
+
+#threads > .item {
+  border: 1px solid rgba(81, 103, 151, 0.5);
+  margin-bottom: .5rem;
+}
+
+#threads > .item > h6 {
+  padding: .25rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+#threads > .item > pre {
+  border-top: 1px dotted rgb(201, 171, 135);
+  margin: 0;
+  padding: 0;
+}
+
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+
+
+/* helpers */
+.link {
+  cursor: pointer;
+  font-size: .85rem;
+  color: blue;
+}
+
+.log-ele img,.log-ele video {
+  max-width: 100%;
+}

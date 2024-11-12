@@ -1,0 +1,22 @@
+# npm
+/node_modules
+
+# others
+/tmp
+
+# tools
+.parcel-cache
+
+.env
+.env.*
+!.env.example
+
+pkg
+
+# test
+test
+covergae
+.nyc_output
+
+# storage
+/storage

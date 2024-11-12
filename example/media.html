@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Preview</title>
+</head>
+
+<body>
+  <p>Local Links</p>
+  <ul>
+    <li>
+      <a
+        href="http://localhost:3001/media.html?audio=g6qd84ty9swf7pFam6ju0MwEsde4rwRiGNeVGlF354g&signableId=6315c0f7ea86834692e7a7f6">
+        http://localhost:3001/media.html?audio=g6qd84ty9swf7pFam6ju0MwEsde4rwRiGNeVGlF354g&signableId=6315c0f7ea86834692e7a7f6
+      </a>
+    </li>
+    <li>
+      <a
+        href="http://localhost:3001/media.html?video=rTYdZSYRijuQjOruRgTRr0yNP7uuwTXojOSSloYpUfY&signableId=6315c07aea86834692e7a7be">
+        http://localhost:3001/media.html?video=rTYdZSYRijuQjOruRgTRr0yNP7uuwTXojOSSloYpUfY&signableId=6315c07aea86834692e7a7be
+      </a>
+    </li>
+    <li>With custom mime</li>
+    <li>
+      <a
+        href="http://localhost:3001/media.html?audio=g6qd84ty9swf7pFam6ju0MwEsde4rwRiGNeVGlF354g&signableId=6315c0f7ea86834692e7a7f6&as=audio/mpeg">
+        http://localhost:3001/media.html?audio=g6qd84ty9swf7pFam6ju0MwEsde4rwRiGNeVGlF354g&signableId=6315c0f7ea86834692e7a7f6&as=audio/mpeg
+      </a>
+    </li>
+  </ul>
+  <p>Live Links</p>
+  <ul>
+    <li>
+      <a
+        href="http://103.149.154.53/akiliapis/media.html?video=livevideotoken&signableId=631848e77e9b225b3f20d33a&endpoint=http://103.149.154.53/akiliapis">
+        http://103.149.154.53/akiliapis/media.html?video=livevideotoken&signableId=631848e77e9b225b3f20d33a&endpoint=http://103.149.154.53/akiliapis
+      </a>
+    </li>
+  </ul>
+  <script>
+    const query = new URLSearchParams(window.location.search);
+    const endpoint = query.get('endpoint') || 'http://localhost:3001';//'http://103.149.154.53/akiliapis';
+    const generateLink = (token, signableId) => `${endpoint}/storage/signed?token=${token}&signableId=${signableId}`;
+
+    const signableId = query.get('signableId');
+    if (signableId) {
+      // video previewer
+      if (query.get('video')) {
+        // link
+        const link = generateLink(query.get('video'), signableId);
+
+        const attrs = { src: link };
+        if (query.get('video_type')) {
+          attrs.type = query.get('video_type');
+          attrs.src = `${link}&as=${query.get('video_type')}`;
+        }
+
+        createMedia('video', attrs);
+      }
+      // audio previewer
+      if (query.get('audio')) {
+        // link
+        const link = generateLink(query.get('audio'), signableId);
+
+        const attrs = { src: link };
+        if (query.get('audio_type')) {
+          attrs.type = query.get('audio_type');
+          attrs.src = `${link}&as=${query.get('audio_type')}`;
+        }
+
+        createMedia('audio', attrs);
+      }
+    }
+
+    function createMedia(tag, attrs) {
+      const s = document.createElement('source');
+      for (const key in attrs) {
+        s.setAttribute(key, attrs[key]);
+      }
+      const m = document.createElement(tag);
+      m.setAttribute('controls', "")
+      m.append(s);
+      document.body.append(m);
+    }
+  </script>
+</body>
+
+</html>

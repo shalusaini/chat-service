@@ -1,0 +1,10 @@
+const Conf = require('./config.js')
+const { connect } = require('./infra/db/mongo.js')
+const { GetUserProvider } = require('./infra/services/user.js')
+const { info } = require('./infra/support/log.js')
+const socket = require('./socket/index.js')
+connect().then(db => {
+  const userProvider = GetUserProvider()
+  socket(Conf.port - 1, db, userProvider)
+  info(`Socket server will listen to port :${Conf.port - 1}`)
+})

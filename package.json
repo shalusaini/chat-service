@@ -1,0 +1,38 @@
+{
+  "name": "5Star-chat-service",
+  "version": "0.8.0",
+  "description": "5Star edu chat service",
+  "main": "src/index.js",
+  "author": "Shalu Saini <shalu.offsureit@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "db:seed": "node --experimental-specifier-resolution=node --enable-source-maps src/seeder.js",
+    "serve": "node --experimental-specifier-resolution=node --enable-source-maps src/index.js",
+    "setup": "node --experimental-specifier-resolution=node --enable-source-maps src/setup.js",
+    "dev:ws": "node src/ws.js",
+    "dev:rest": "node src/rest.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@socket.io/redis-adapter": "^7.2.0",
+    "@socket.io/redis-emitter": "^5.1.0",
+    "@ukab/sbody": "^0.2.1",
+    "@ukab/storage": "^1.0.0-beta.4",
+    "bent": "^7.3.12",
+    "bufferutil": "^4.0.6",
+    "dotenv": "^16.0.1",
+    "file-type": "^18.0.0",
+    "ioredis": "^5.2.3",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-compose": "^4.1.0",
+    "koa-logger": "^3.2.1",
+    "mime-lite": "^1.0.3",
+    "mongodb": "^4.9.0",
+    "node-input-validator": "^4.5.1",
+    "repulser": "^1.0.0",
+    "sharp": "^0.33.0",
+    "socket.io": "^4.5.1",
+    "utf-8-validate": "^5.0.9"
+  }
+}

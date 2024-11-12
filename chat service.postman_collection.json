@@ -1,0 +1,816 @@
+{
+	"info": {
+		"_postman_id": "772ea7b9-8cd1-4f95-bdec-b9f691d28d5e",
+		"name": "akili chat service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "thread",
+			"item": [
+				{
+					"name": "send message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"receiverUserId\": \"2\",\n    \"content\": \"Im testing 2\",\n    \"meta\": {\n        \"attachment\": \"6311944c362e417e639536f2\"\n    },\n    \"type\": \"ATTACHMENT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/messages",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thread listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads?type=SINGLE",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "630d9de23b9d00fea911ed17",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "SINGLE",
+									"description": "SINGLE=one to one threads|TEAM=team threads|GLOBAL=group threads"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thread by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/show?id=63108738befd3d533ac5380d",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"show"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63108738befd3d533ac5380d",
+									"description": "this is thread id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thread messages list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/messages?id=630c8ad252743c1ba29ef2c0",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "630c8ad252743c1ba29ef2c0",
+									"description": "this is thread id"
+								},
+								{
+									"key": "newest",
+									"value": "6311978f09fdc8af0ce9e0bc",
+									"description": "fetch messages less than this id",
+									"disabled": true
+								},
+								{
+									"key": "oldest",
+									"value": "6311978f09fdc8af0ce9e0bc",
+									"description": "fetch messages greater than this id",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"my Team\",\n    \"users\": [ 1,3,4,5]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/team",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thread block user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"threadId\":\"63108738befd3d533ac5380d\",\n    \"userId\":\"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/users/block",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"users",
+								"block"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thread unblock user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"threadId\":\"63108738befd3d533ac5380d\",\n    \"userId\":\"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/users/unblock",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"users",
+								"unblock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add members ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"threadId\":\"63108738befd3d533ac5380d\",\n    \"users\":[\"4\",5]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/users",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/630d9de23b9d00fea911ed17/messages/630d9de2b5f23bce71171d1b",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"630d9de23b9d00fea911ed17",
+								"messages",
+								"630d9de2b5f23bce71171d1b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "message sign attachment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"threadId\":\"630c8ad252743c1ba29ef2c0\",\n    \"messageId\":\"6315acdc4881385bab136963\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/messages/sign/attachment",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"messages",
+								"sign",
+								"attachment"
+							]
+						},
+						"description": "Note: only use for large files"
+					},
+					"response": []
+				},
+				{
+					"name": "message stream attachment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"threadId\":\"630d9de23b9d00fea911ed17\",\n    \"messageId\":\"630db96bf88440b1797a6d56\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/messages/stream/attachment?messageId=6315acdc4881385bab136963&threadId=630c8ad252743c1ba29ef2c0",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"messages",
+								"stream",
+								"attachment"
+							],
+							"query": [
+								{
+									"key": "messageId",
+									"value": "6315acdc4881385bab136963"
+								},
+								{
+									"key": "threadId",
+									"value": "630c8ad252743c1ba29ef2c0"
+								},
+								{
+									"key": "thumbnail",
+									"value": "true",
+									"description": "to download thumbnail",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thread image stream",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/stream/image?threadId=6315e2e0c2f7ab1190316735",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"stream",
+								"image"
+							],
+							"query": [
+								{
+									"key": "threadId",
+									"value": "6315e2e0c2f7ab1190316735"
+								},
+								{
+									"key": "thumbnail",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one to one thread by user id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/show/single?id=2",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"show",
+								"single"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "this is thread id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "leave team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"thread\": \"63119ab0b79af89ac36fabd7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/team/left",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"team",
+								"left"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove team members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"thread\": \"6315d4cbd5a1a3d353673316\",\n    \"users\":[\"3\",\"4\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/threads/remove/team-members",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"threads",
+								"remove",
+								"team-members"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "storage",
+			"item": [
+				{
+					"name": "recommended: upload message attachment (binary)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Transfer-Encoding",
+								"type": "text",
+								"value": "binary"
+							},
+							{
+								"key": "Content-Disposition",
+								"type": "text",
+								"value": "attachment; filename=\"s.jpeg\""
+							},
+							{
+								"key": "x-type",
+								"type": "text",
+								"value": "PRODUCT_IMAGE"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/home/developer/Pictures/s.jpeg"
+							}
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/storage",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"storage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload message attachment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-type",
+								"value": "MESSAGE_ATTACHMENT",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/offsure-i7/Pictures/Screenshot from 2022-08-09 13-24-22.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/storage/formdata",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"storage",
+								"formdata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload message video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-type",
+								"value": "MESSAGE_VIDEO",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/offsure-i7/Downloads/media_1625809362323.mp4"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/home/offsure-i7/Pictures/Screenshot from 2022-08-09 13-24-22.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/storage/formdata",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"storage",
+								"formdata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stream with signed token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{akili_chat_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-type",
+								"value": "MESSAGE_ATTACHMENT",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/offsure-i7/Pictures/Screenshot from 2022-08-09 13-24-22.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{akili_chat_api_url}}/storage/signed?token=o_e2sPgsgDzMPpHOvWFpyBiuj2s4bQ4-jOKfrov6Bac&signableId=6315acdc4881385bab136963",
+							"host": [
+								"{{akili_chat_api_url}}"
+							],
+							"path": [
+								"storage",
+								"signed"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "o_e2sPgsgDzMPpHOvWFpyBiuj2s4bQ4-jOKfrov6Bac"
+								},
+								{
+									"key": "signableId",
+									"value": "6315acdc4881385bab136963"
+								}
+							]
+						},
+						"description": "Note: only use for large file, or when you need it"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
